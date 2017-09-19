@@ -1,11 +1,7 @@
 ---
 title: "Exercises"
-author: "M. E. Steiner"
-website: "https://github.com/M-E-Steiner/ggplot2-book-solutions"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_notebook:
-    toc: yes
-    toc_depth: 4
   github_document:
     toc: yes
     toc_depth: 4
@@ -134,7 +130,6 @@ q4_1_3 <- mpg %>%
   group_by(manufacturer) %>% 
   summarise(n()) %>% 
   arrange(desc(`n()`))
-q4_1_3
 ```
 
 If we are looking for most *unique* models by manufacturer 
@@ -145,7 +140,6 @@ q4_2 <- mpg %>%
   unique() %>%
   ungroup() %>% 
   arrange(desc(n))
-q4_2  
 ```
 
 All combined in a plot
@@ -426,13 +420,13 @@ __Answer__:
 diamonds ## look at the data
 
 # trial and error leads to binwidth 
-bars = 200;                           # .(70919.01.1 RAM bins = 200 was getting an error) 
-ggplot(diamonds, aes(x = carat)) + 
-  geom_histogram(bins = bars) +       # .(70919.02.2 RAM was bins = bins; object 'bins' not found) 
+bins = 200
+ggplot(diamonds, aes(x = carat)) +
+  geom_histogram(bins = bins) +
   scale_x_continuous(limits = c(0, 2), expand = c(0,0), breaks = seq(0,2,0.1))
 ```
 
-With a the number of bins set to `r bars` Beginning at 0.3 carat there is a spike in the number of diamonds at 0.3, 0.5, 0.7, 0,9, 1, 1.2 and 1.5. 
+With a the number of bins set to `r bins` Beginning at 0.3 carat there is a spike in the number of diamonds at 0.3, 0.5, 0.7, 0,9, 1, 1.2 and 1.5. 
 I am no diamonds expert but there is probably a reason for this pattern.
 
 > __Question 4__: Explore the distribution of the price variable in the `diamonds`
@@ -441,9 +435,9 @@ I am no diamonds expert but there is probably a reason for this pattern.
 __Answer__: 
 
 ```{r }
-bars = 200;                           # .(70919.01.3 RAM bins = 200 was getting an error) 
-ggplot(diamonds, aes(x = price)) +   
-  geom_histogram(bins = bars) +       # .(70919.02.4 RAM was bins = bins; bins was not found) 
+bins = 200
+ggplot(diamonds, aes(x = price)) +
+  geom_histogram(bins = bins) +
   facet_wrap(~cut, scales = "free")
 ```
 
